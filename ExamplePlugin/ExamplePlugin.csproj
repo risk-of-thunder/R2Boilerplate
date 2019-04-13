@@ -26,9 +26,6 @@
     <Reference Include="Mono.Security">
       <HintPath>..\libs\Mono.Security.dll</HintPath>
     </Reference>
-    <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>..\libs\MonoMod.RuntimeDetour.dll</HintPath>
-    </Reference>
     <Reference Include="MonoMod.Utils">
       <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
     </Reference>
@@ -45,7 +42,7 @@
       <HintPath>..\libs\ProBuilderMeshOps.dll</HintPath>
     </Reference>
     <Reference Include="R2API">
-      <HintPath>..\libs\R2API\R2API.dll</HintPath>
+      <HintPath>..\libs\R2API.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Core">
       <HintPath>..\libs\Rewired_Core.dll</HintPath>
