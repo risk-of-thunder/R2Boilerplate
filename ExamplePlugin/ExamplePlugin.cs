@@ -34,10 +34,10 @@ namespace ExamplePlugin
                     descriptionToken = "BANDIT_DESCRIPTION",
                     displayPrefab = Resources.Load<GameObject>("Prefabs/Characters/BanditDisplay"),
                     primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
-                    unlockableName = ""
+                    unlockableName = "Bandit"
                 };
 
-                R2API.SurvivorAPI.SurvivorDefinitions.Insert(3, survivor);
+                R2API.SurvivorAPI.AddSurvivorOnReady(survivor);
             };
         }
 
