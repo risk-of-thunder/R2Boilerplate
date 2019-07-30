@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <Target Name="PreCompileNix" BeforeTargets="Build" Condition=" '$(OS)' != 'Windows_NT' ">
+    <Exec Command="mono ../.paket/paket.exe install" />
+  </Target>
+  <Target Name="PreCompileWin" BeforeTargets="Build" Condition=" '$(OS)' == 'Windows_NT' ">
+    <Exec Command="../.paket/paket.exe install" />
+  </Target>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
