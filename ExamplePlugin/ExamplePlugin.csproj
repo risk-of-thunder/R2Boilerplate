@@ -7,7 +7,7 @@
     <Exec Command="mono ../.paket/paket.exe install" />
   </Target>
   <Target Name="PreCompileWin" BeforeTargets="Build" Condition=" '$(OS)' == 'Windows_NT' ">
-    <Exec Command="../.paket/paket.exe install" />
+    <Exec Command="paket.exe install" WorkingDirectory="../.paket" />
   </Target>
   <ItemGroup>
     <Reference Include="0Harmony">
