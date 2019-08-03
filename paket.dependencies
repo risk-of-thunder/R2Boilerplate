@@ -8,6 +8,7 @@ github mistername/RoR2Libs KdTreeLib.dll
 github mistername/RoR2Libs MMHOOK_Assembly-CSharp.dll
 github mistername/RoR2Libs Mono.Cecil.dll
 github mistername/RoR2Libs MonoMod.RuntimeDetour.dll
+github mistername/RoR2Libs MonoMod.Utils.dll
 github mistername/RoR2Libs Poly2Tri.dll
 github mistername/RoR2Libs ProBuilderCore.dll
 github mistername/RoR2Libs ProBuilderMeshOps.dll
