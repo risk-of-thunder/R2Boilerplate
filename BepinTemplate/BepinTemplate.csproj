@@ -27,17 +27,2228 @@
       $(PostBuildEventDependsOn);
       PostBuildMacros;
     </PostBuildEventDependsOn>
-    <PostBuildEvent>if not exist $(TargetDir)rorDirectory.txt (powershell -ExecutionPolicy Unrestricted $(ProjectDir)ConfirmExecutionDialogue.ps1)
+    <PostBuildEvent>if $(Configuration) == Debug (
+if not exist $(TargetDir)rorDirectory.txt (powershell -ExecutionPolicy Unrestricted $(ProjectDir)ConfirmExecutionDialogue.ps1)
 set /p RORDIR=&lt;$(TargetDir)rorDirectory.txt
 if exist $(TargetDir)rorDirectory.txt (
 mkdir "%RORDIR%\BepInEx\plugins\dev\"
 copy /y $(TargetPath)  "%RORDIR%\BepInEx\plugins\dev\$(TargetFileName)"
-echo Placed $(TargetFileName) in "%RORDIR%\BepInEx\plugins\dev\$(TargetFileName)"
-)  
+echo Placed $(TargetFileName) in "%RORDIR%\BepInEx\plugins\dev\$(TargetFileName)")  
+)
 
-if $(Configuration) == Release (powershell -Command "(gc $(ProjectDir)manifest.template) -replace '\[MODVER\]', '@(VersionNumber)' | Out-File -encoding ASCII manifest.json")
+if $(Configuration) == Release (powershell -Command "(gc $(ProjectDir)manifest.template) -replace '\[MODVER\]', '@(VersionNumber)' | Out-File -encoding ASCII $(TargetDir)manifest.json")
 if $(Configuration) == Release (powershell Compress-Archive -Path '$(TargetDir)$(TargetFileName)', '$(ProjectDir)icon.png', '$(TargetDir)manifest.json', '$(ProjectDir)README.md' -DestinationPath '$(TargetDir)\$(ProjectName).zip' -Force)</PostBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Preloader.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Facepunch.Steamworks.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\KdTreeLib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.Utils.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Poly2Tri.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderCore.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderMeshOps.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\paket-files\mistername\RoR2Libs\R2API.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Core.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Windows_Lib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.TextMeshPro.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ARModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.BaselibModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClothModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GridModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.InputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Networking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TLSModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Timeline.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UI.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UNETModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VFXModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VideoModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.WindModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.XRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Wwise">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Wwise.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Zio">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Zio.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>..\paket-files\mistername\RoR2Libs\pb_Stl.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Preloader.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Facepunch.Steamworks.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\KdTreeLib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.Utils.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Poly2Tri.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderCore.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderMeshOps.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\paket-files\mistername\RoR2Libs\R2API.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Core.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Windows_Lib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.TextMeshPro.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ARModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.BaselibModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClothModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GridModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.InputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Networking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TLSModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Timeline.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UI.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UNETModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VFXModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VideoModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.WindModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.XRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Wwise">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Wwise.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Zio">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Zio.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>..\paket-files\mistername\RoR2Libs\pb_Stl.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Preloader.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Facepunch.Steamworks.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\KdTreeLib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.Utils.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Poly2Tri.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderCore.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderMeshOps.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\paket-files\mistername\RoR2Libs\R2API.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Core.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Windows_Lib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.TextMeshPro.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ARModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.BaselibModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClothModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GridModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.InputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Networking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TLSModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Timeline.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UI.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UNETModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VFXModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VideoModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.WindModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.XRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Wwise">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Wwise.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Zio">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Zio.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>..\paket-files\mistername\RoR2Libs\pb_Stl.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Preloader.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Facepunch.Steamworks.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\KdTreeLib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.Utils.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Poly2Tri.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderCore.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderMeshOps.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\paket-files\mistername\RoR2Libs\R2API.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Core.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Windows_Lib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.TextMeshPro.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ARModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.BaselibModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClothModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GridModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.InputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Networking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TLSModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Timeline.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UI.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UNETModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VFXModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VideoModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.WindModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.XRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Wwise">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Wwise.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Zio">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Zio.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>..\paket-files\mistername\RoR2Libs\pb_Stl.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Harmony.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.Preloader.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\paket-files\mistername\RoR2Libs\BepInEx.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Facepunch.Steamworks.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\KdTreeLib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.Utils.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\paket-files\mistername\RoR2Libs\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Poly2Tri.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderCore.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>..\paket-files\mistername\RoR2Libs\ProBuilderMeshOps.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\paket-files\mistername\RoR2Libs\R2API.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_CSharp">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_CSharp.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Core.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Rewired_Windows_Lib.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Unity.TextMeshPro.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ARModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.BaselibModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClothModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.GridModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.InputModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Networking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TLSModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.Timeline.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UI.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UIModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UNETModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VFXModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.VideoModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.WindModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.XRModule.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\paket-files\mistername\RoR2Libs\UnityEngine.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Wwise">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Wwise.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="Zio">
+      <HintPath>..\paket-files\mistername\RoR2Libs\Zio.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>..\paket-files\mistername\RoR2Libs\pb_Stl.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\paket-files\mistername\RoR2Libs\0Harmony.dll</HintPath>
