@@ -1,0 +1,10 @@
+{
+    "name": "BepinTemplate",
+    "version_number": "[MODVER]",
+    "website_url": "YourGithubProjectURL",
+    "description": "BepinTemplateDescription",
+    "dependencies": [
+	"bbepis-BepInExPack-2.0.0",
+	"tristanmcpherson-R2API-2.1.16"
+    ]
+}
