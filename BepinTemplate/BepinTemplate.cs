@@ -16,14 +16,27 @@ namespace YourUsername
     /// You can prevent this automated execution by removing the first block inside the "Build-Events" tab of the Project Properties, and replacing it with the hardcoded alternative:
     /// if $(ConfigurationName) == Debug (copy /Y "$(TargetDir)$(TargetFileName)" "[YOUR STEAM LIBRARY GOES HERE]\steamapps\common\Risk of Rain 2\BepInEx\plugins\dev\$(TargetFileName)")
     /// </summary>
+    /// 
+
+    
+
     [BepInDependency("com.bepis.r2api")]
     [BepInPlugin("com.YourUserName." + modname, modname, modver)]
+    //[assembly: AssemblyVersionAttribute(modver)]
     public class BepinTemplate : BaseUnityPlugin
     {
-        private const string modname = "BepinTemplate", modver = "1.0.0";
+        private const string modname = "BepinTemplate", modver = "1.0.3";
         public void Awake()
         {
 
+        }
+        /// <summary>
+        /// This method is required for automated manifest versioning. Do not remove.
+        /// </summary>
+        /// <returns>Returns the BepinPlugin Plugin/Mod Version</returns>
+        public static string GetModVer()
+        {
+            return modver;
         }
     }
 }
