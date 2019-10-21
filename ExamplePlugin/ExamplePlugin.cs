@@ -24,21 +24,18 @@ namespace ExamplePlugin
         //The Awake() method is run at the very start when the game is initialized.
         public void Awake()
         {
-            //Here we are subscribing to the SurvivorCatalogReady event, which is run when the subscriber catalog can be modified.
-            //We insert Bandit as a new character here, which is then automatically added to the internal game catalog and reconstructed.
-            R2API.SurvivorAPI.SurvivorCatalogReady += (s, e) =>
+            //First we create our bandit survivor.
+            var survivor = new SurvivorDef
             {
-                var survivor = new SurvivorDef
-                {
-                    bodyPrefab = BodyCatalog.FindBodyPrefab("BanditBody"),
-                    descriptionToken = "BANDIT_DESCRIPTION",
-                    displayPrefab = Resources.Load<GameObject>("Prefabs/Characters/BanditDisplay"),
-                    primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
-                    unlockableName = "Bandit"
-                };
-
-                R2API.SurvivorAPI.AddSurvivorOnReady(survivor);
+                bodyPrefab = Resources.Load<GameObject>("Prefabs/CharacterBodies/BanditBody"),
+                descriptionToken = "BANDIT_DESCRIPTION",
+                displayPrefab = Resources.Load<GameObject>("Prefabs/CharacterDisplays/CommandoDisplay"),
+                primaryColor = new Color(0.8039216f, 0.482352942f, 0.843137264f),
+                name = "Bandit",
+                unlockableName = ""
             };
+            //then we add our survivor to the survivor list
+            R2API.SurvivorAPI.AddSurvivor(survivor);
         }
 
         //The Update() method is run on every frame of the game.
