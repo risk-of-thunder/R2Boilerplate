@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using RoR2;
 using UnityEngine;
+using R2API.Utils;
 
 namespace ExamplePlugin
 {
@@ -16,7 +17,9 @@ namespace ExamplePlugin
     //The GUID should be a unique ID for this plugin, which is human readable (as it is used in places like the config). I like to use the java package notation, which is "com.[your name here].[your plugin name here]"
     //The name is the name of the plugin that's displayed on load, and the version number just specifies what version the plugin is.
     [BepInPlugin("com.examplemodder.exampleplugin", "ExamplePlugin", "1.0")]
-
+    
+    //When using r2api stuff, we need to request our module to be loaded. In this example we are using the SurvivorAPI, so we request it to be loaded.
+    [R2APISubmoduleDependency("SurvivorAPI")]
     //This is the main declaration of our plugin class. BepInEx searches for all classes inheriting from BaseUnityPlugin to initialize on startup.
     //BaseUnityPlugin itself inherits from MonoBehaviour, so you can use this as a reference for what you can declare and use in your plugin class: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
     public class ExamplePlugin : BaseUnityPlugin
