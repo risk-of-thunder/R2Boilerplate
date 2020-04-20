@@ -51,8 +51,8 @@ namespace ExamplePlugin
                 //The tier determines what rarity the item is: Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow, and finally NoTier is generally used for helper items, like the tonic affliction
                 tier = ItemTier.Tier2,
                 //You can create your own icons and prefabs through assetbundles, but to keep this boilerplate brief, we'll be using question marks.
-                pickupIconPath = "textures/miscicons/texMysteryIcon.png",
-                pickupModelPath = "prefabs/pickupmodels/PickupMystery.prefab",
+                pickupIconPath = "Textures/MiscIcons/texMysteryIcon",
+                pickupModelPath = "Prefabs/PickupModels/PickupMystery",
                 //Can remove determines if a shrine of order, or a printer can take this item, generally true, except for NoTier items.
                 canRemove = true,
                 //Hidden means that there will be no pickup notification, and it won't appear in the inventory at the top of the screen. This is useful for certain noTier helper items, such as the DrizzlePlayerHelper.
@@ -113,9 +113,11 @@ namespace ExamplePlugin
             //This if statement checks if the player has currently pressed F2.
             if (Input.GetKeyDown(KeyCode.F2))
             {
-                //And then drops our defined item in front of the player.
+                //Get the player body to use a position:	
+                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+                //And then drop our defined item in front of the player.
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-            }
+            }   
         }
     }
 }
