@@ -8,10 +8,9 @@ using UnityEngine;
 namespace ExamplePlugin
 {
     //This is an example plugin that can be put in BepInEx/plugins/ExamplePlugin/ExamplePlugin.dll to test out.
-    //It's a very simple plugin that adds a relatively simple item to the game, and gives you that item whenever you press F2.
-    //Lets examine what each line of code is for:
+    //It's a small plugin that adds a relatively simple item to the game, and gives you that item whenever you press F2.
 
-    //This attribute specifies that we have a dependency on R2API, as we're using it to add Bandit to the game.
+    //This attribute specifies that we have a dependency on R2API, as we're using it to add our item to the game.
     //You don't need this if you're not using R2API in your plugin, it's just to tell BepInEx to initialize R2API before this plugin so it's safe to use R2API.
     [BepInDependency("com.bepis.r2api")]
 
@@ -26,7 +25,7 @@ namespace ExamplePlugin
     //Like seriously, if we see this boilerplate on thunderstore, we will deprecate this mod. Change that name!
     //If you want to test package uploading in general, try using beta.thunderstore.io
 
-    //
+    //We will be using 3 modules from R2API: ItemAPI to add our item, ItemDropAPI to have our item drop ingame, and AssetPLus to add our language tokens.
     [R2APISubmoduleDependency(nameof(ItemAPI),nameof(ItemDropAPI),nameof(R2API.AssetPlus.AssetPlus))]
     
 
