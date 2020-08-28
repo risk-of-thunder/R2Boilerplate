@@ -93,17 +93,17 @@ namespace ExamplePlugin
             }
         }
 
-        //This function adds the tokens from the item to assetplus, the comments in here are a style guide, but is very opiniated. Make your own judgements!
+        //This function adds the tokens from the item using LanguageAPI, the comments in here are a style guide, but is very opiniated. Make your own judgements!
         private void AddTokens()
         {
             //The Name should be self explanatory
-            R2API.AssetPlus.Languages.AddToken("EXAMPLE_CLOAKONKILL_NAME", "Cuthroat's Garb");
-            //The Pickup is the short text that appears when you first pick this up. This text should be short and to the point, nuimbers are generally ommited.
-            R2API.AssetPlus.Languages.AddToken("EXAMPLE_CLOAKONKILL_PICKUP", "Chance to cloak on kill");
+            R2API.LanguageAPI.Add("EXAMPLE_CLOAKONKILL_NAME", "Cuthroat's Garb");
+            //The Pickup is the short text that appears when you first pick this up. This text should be short and to the point, numbers are generally ommited.
+            R2API.LanguageAPI.Add("EXAMPLE_CLOAKONKILL_PICKUP", "Chance to cloak on kill");
             //The Description is where you put the actual numbers and give an advanced description.
-            R2API.AssetPlus.Languages.AddToken("EXAMPLE_CLOAKONKILL_DESC", "Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>5%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style.");
+            R2API.LanguageAPI.Add("EXAMPLE_CLOAKONKILL_DESC", "Whenever you <style=cIsDamage>kill an enemy</style>, you have a <style=cIsUtility>5%</style> chance to cloak for <style=cIsUtility>4s</style> <style=cStack>(+1s per stack)</style.");
             //The Lore is, well, flavor. You can write pretty much whatever you want here.
-            R2API.AssetPlus.Languages.AddToken("EXAMPLE_CLOAKONKILL_LORE", "Those who visit in the night are either praying for a favour, or preying on a neighbour.");
+            R2API.LanguageAPI.Add("EXAMPLE_CLOAKONKILL_LORE", "Those who visit in the night are either praying for a favour, or preying on a neighbour.");
         }
 
         //The Update() method is run on every frame of the game.
