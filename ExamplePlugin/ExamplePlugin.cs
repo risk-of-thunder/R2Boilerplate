@@ -25,8 +25,8 @@ namespace ExamplePlugin
     //Like seriously, if we see this boilerplate on thunderstore, we will deprecate this mod. Change that name!
     //If you want to test package uploading in general, try using beta.thunderstore.io
 
-    //We will be using 3 modules from R2API: ItemAPI to add our item, ItemDropAPI to have our item drop ingame, and AssetPLus to add our language tokens.
-    [R2APISubmoduleDependency(nameof(ItemAPI),nameof(ItemDropAPI),nameof(R2API.AssetPlus.AssetPlus))]
+    //We will be using 3 modules from R2API: ItemAPI to add our item, ItemDropAPI to have our item drop ingame, and LanguageAPI to add our language tokens.
+    [R2APISubmoduleDependency(nameof(ItemAPI),nameof(ItemDropAPI),nameof(LanguageAPI))]
     
 
     //This is the main declaration of our plugin class. BepInEx searches for all classes inheriting from BaseUnityPlugin to initialize on startup.
@@ -44,7 +44,7 @@ namespace ExamplePlugin
             {
                 //More on these later
                 name = "EXAMPLE_CLOAKONKILL_NAME",
-                nameToken = "EXAMPLE_CLOAKONKILL_NAME",
+                nameToken = "EXAMPLE_CLOAKONKILL_NAME", //? Still needed if we are assigning name in the line above?
                 pickupToken = "EXAMPLE_CLOAKONKILL_PICKUP",
                 descriptionToken = "EXAMPLE_CLOAKONKILL_DESC",
                 loreToken = "EXAMPLE_CLOAKONKILL_LORE",
