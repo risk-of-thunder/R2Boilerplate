@@ -43,6 +43,7 @@ namespace ExamplePlugin
             myItemDef = new ItemDef
             {
                 //More on these later
+                name = "EXAMPLE_CLOAKONKILL_NAME",
                 nameToken = "EXAMPLE_CLOAKONKILL_NAME",
                 pickupToken = "EXAMPLE_CLOAKONKILL_PICKUP",
                 descriptionToken = "EXAMPLE_CLOAKONKILL_DESC",
