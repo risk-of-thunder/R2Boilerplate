@@ -76,9 +76,6 @@ namespace ExamplePlugin
 
             //But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
             GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
-
-            // This line of log will appear in the bepinex console when the Awake method is done.
-            Log.Info(nameof(Awake) + " done.");
         }
 
         private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
