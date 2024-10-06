@@ -1,6 +1,6 @@
 ﻿using BepInEx.Logging;
 
-namespace ExamplePlugin
+namespace ToggledChargedGauntlet
 {
     internal static class Log
     {
