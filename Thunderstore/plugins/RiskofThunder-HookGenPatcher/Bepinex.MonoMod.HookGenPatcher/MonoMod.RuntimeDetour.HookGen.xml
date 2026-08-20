@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoMod.RuntimeDetour.HookGen</name>
+    </assembly>
+    <members>
+        <member name="M:MonoMod.RuntimeDetour.HookGen.HookGenerator.FindMethods(Mono.Cecil.TypeDefinition,System.String,System.Boolean)">
+            <summary>
+            Find a method for a given ID.
+            </summary>
+            <param name="type">The type to search in.</param>
+            <param name="id">The method ID.</param>
+            <param name="simple">Whether to perform a simple search pass as well or not.</param>
+            <returns>The first matching method or null.</returns>
+        </member>
+    </members>
+</doc>

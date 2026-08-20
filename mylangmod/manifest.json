@@ -1,0 +1,10 @@
+{
+    "name": "MyLanguageMod",
+    "version_number": "1.0.0",
+    "website_url": "",
+    "description": "My language mod, default text lol I didnt change the default text",
+    "dependencies": [
+		"bbepis-BepInExPack-5.4.1903",
+		"tristanmcpherson-R2API-4.3.5"
+    ]
+}

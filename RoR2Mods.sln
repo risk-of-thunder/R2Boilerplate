@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamplePlugin", "ExamplePlugin\ExamplePlugin.csproj", "{2F8A40CC-6D15-486D-B689-0A7A472DB89E}"
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EggShare.Patcher", "./EggShare/EggShare.Patcher/EggSharePatcher.csproj", "{022B49B8-5CDB-4E91-9B01-BD17A12291C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EggShare.Interop", "./EggShare/EggShare.Interop/EggShareInterop.csproj", "{CC75329B-25FD-4478-8D43-22D2BDB19C8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EggShare.Plugin", "./EggShare/EggShare.Plugin/EggSharePlugin.csproj", "{2F8A40CC-6D15-486D-B689-0A7A472DB89E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

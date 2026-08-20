@@ -1,0 +1,32 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>preview</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EggShare.Interop\EggShareInterop.csproj" Private="false" PrivateAssets="all"/>
+    <ProjectReference Include="..\EggShare.Patcher\EggSharePatcher.csproj" Private="false" PrivateAssets="all" ReferenceOutputAssembly="false" />
+
+		<PackageReference Include="BepInEx.Analyzers" Version="1.0.*">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<PackageReference Include="BepInEx.Core" Version="5.4.21" />
+		<PackageReference Include="Mono.Cecil" Version="0.11.4.0" />
+		<PackageReference Include="MMHOOK.RoR2" Version="2025.12.9" NoWarn="NU1701" />
+		<PackageReference Include="RiskOfRain2.GameLibs" Version="1.4.1-r.0" />
+		<PackageReference Include="UnityEngine.Modules" Version="2021.3.33" IncludeAssets="compile" />
+		<PackageReference Include="UnityEngine.CoreModule" Version="2020.3.0" IncludeAssets="compile" />
+
+		<PackageReference Include="R2API.Items" Version="1.0.*" />
+		<PackageReference Include="R2API.Language" Version="1.0.*" />
+    <Reference Include="RoR2">
+      <HintPath>$(RoR2InstallPath)\Risk of Rain 2_Data\Managed\RoR2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>

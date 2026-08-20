@@ -1,6 +1,6 @@
 ﻿using BepInEx.Logging;
 
-namespace ExamplePlugin
+namespace EggSharePlugin
 {
     internal static class Log
     {

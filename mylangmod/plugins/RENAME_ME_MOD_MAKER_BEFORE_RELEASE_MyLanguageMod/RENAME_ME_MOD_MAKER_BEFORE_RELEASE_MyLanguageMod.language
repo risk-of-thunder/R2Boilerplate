@@ -1,0 +1,13 @@
+{
+  "strings": {
+    "TOKEN1": "CURRENT LANGUAGE Hustling Fungus",
+    "TOKEN_WHATEVER": "TEST VALUE CURRENT LANGUAGE",
+  },
+  "FR": {
+    "TOKEN1": "French Hustling Fungus",
+    "TOKEN_WHATEVER": "TEST VALUE FOR FRENCH LANGUAGE",
+  },
+  "en": {
+    "TOKEN1": "English Hustling Fungus"
+  }
+}
