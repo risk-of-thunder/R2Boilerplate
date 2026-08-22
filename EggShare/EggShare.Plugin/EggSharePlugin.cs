@@ -51,7 +51,7 @@ namespace EggSharePlugin
     // Change the PluginAuthor and the PluginName !
     
     // We need our item definition to persist through our functions, and therefore make it a class field.
-    private  ItemDef egg;
+    private static ItemDef egg;
 
   
     // The Awake() method is run at the very start when the game is initialized.
@@ -63,8 +63,10 @@ namespace EggSharePlugin
       // First let's define our item
       egg = ScriptableObject.CreateInstance<ItemDef>();
 
-
+      
       // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
+      
+		  egg.tags = new ItemTag[1] { ItemTag.WorldUnique };
       egg.name = "EggShare";
       egg.nameToken = "EggShare";
       egg.pickupToken = "ITEM_EGGSHARE_PICKUP";
@@ -73,20 +75,20 @@ namespace EggSharePlugin
       // The tier determines what rarity the item is:
       // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
       // and finally NoTier is generally used for helper items, like the tonic affliction
-// #pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-//       egg._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier3.asset").WaitForCompletion();
-// #pragma warning restore Publicizer001
-      egg.tier
-      egg.tags = [
-        // ItemTag.WorldUnique
-        ItemTag.CommandArtifactBlacklist
-      , ItemTag.AIBlacklist
-      , ItemTag.CannotDuplicate
-      , ItemTag.CannotSteal
-      , ItemTag.CannotCopy
-      , ItemTag.IgnoreForDropList
-      , ItemTag.SacrificeBlacklist
-      ];
+#pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
+      egg._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier3.asset").WaitForCompletion();
+#pragma warning restore Publicizer001
+      // egg.tier
+      // egg.tags = [
+      //   ItemTag.WorldUnique
+      // //   ItemTag.CommandArtifactBlacklist
+      // // , ItemTag.AIBlacklist
+      // // , ItemTag.CannotDuplicate
+      // // , ItemTag.CannotSteal
+      // // , ItemTag.CannotCopy
+      // // , ItemTag.IgnoreForDropList
+      // // , ItemTag.SacrificeBlacklist
+      // ];
 	    // egg._itemTierDef.colorIndex = ColorCatalog.ColorIndex.VoidItemDark;
 	    // egg._itemTierDef.darkColorIndex = ColorCatalog.ColorIndex.VoidItem;
 	    // egg._itemTierDef.isDroppable = false;

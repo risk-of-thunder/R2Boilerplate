@@ -1,7 +1,7 @@
 {
     "name": "EggShare",
     "author": "Ap101",
-    "version_number": "0.0.2",
+    "version_number": "0.0.3",
     "website_url": "https://youtu.be/qK_s4iXn5fM",
     "description": "Mod that puts items that comes from printers cauldrons and scrappers, etc in egg for Sharesuite blacklisting",
     "dependencies": [
