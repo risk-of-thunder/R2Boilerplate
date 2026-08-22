@@ -61,68 +61,40 @@ namespace EggSharePlugin
       Log.Init(Logger);
 
       // First let's define our item
-      egg = ScriptableObject.CreateInstance<ItemDef>();
-
+      // egg = ScriptableObject.CreateInstance<ItemDef>();
+      egg = CreateItemDef();
       
-      // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
+      // // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
       
-		  egg.tags = new ItemTag[1] { ItemTag.WorldUnique };
-      egg.name = "EggShare";
-      egg.nameToken = "EggShare";
-      egg.pickupToken = "ITEM_EGGSHARE_PICKUP";
-      egg.descriptionToken = "ITEM_EGGSHARE_DESC";
-      egg.loreToken = "ITEM_EGGSHARE_LORE";
-      // The tier determines what rarity the item is:
-      // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
-      // and finally NoTier is generally used for helper items, like the tonic affliction
-#pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-      egg._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier3.asset").WaitForCompletion();
-#pragma warning restore Publicizer001
-      // egg.tier
+      // egg.name              = "EggShare";
+      // egg.nameToken         = "EggShare";
+      // egg.pickupToken       = "ITEM_EGGSHARE_PICKUP";
+      // egg.descriptionToken  = "ITEM_EGGSHARE_DESC";
+      // egg.loreToken         = "ITEM_EGGSHARE_LORE";
+      // egg.tier              = ItemTier.VoidBoss;
       // egg.tags = [
-      //   ItemTag.WorldUnique
-      // //   ItemTag.CommandArtifactBlacklist
-      // // , ItemTag.AIBlacklist
-      // // , ItemTag.CannotDuplicate
-      // // , ItemTag.CannotSteal
-      // // , ItemTag.CannotCopy
-      // // , ItemTag.IgnoreForDropList
-      // // , ItemTag.SacrificeBlacklist
+      //   ItemTag.CommandArtifactBlacklist
       // ];
-	    // egg._itemTierDef.colorIndex = ColorCatalog.ColorIndex.VoidItemDark;
-	    // egg._itemTierDef.darkColorIndex = ColorCatalog.ColorIndex.VoidItem;
-	    // egg._itemTierDef.isDroppable = false;
-	    // egg._itemTierDef.canScrap = false;
-	    // egg._itemTierDef.canRestack = false;
-	    // egg._itemTierDef.canRebirth = false;
-	    // egg._itemTierDef.pickupRules = ItemTierDef.PickupRules.ConfirmAll;
-      // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
-      // egg.deprecatedTier = ItemTier.Tier2;
+	    // // egg._itemTierDef.colorIndex = ColorCatalog.ColorIndex.VoidItemDark;
+	    // // egg._itemTierDef.darkColorIndex = ColorCatalog.ColorIndex.VoidItem;
+	    // // egg._itemTierDef.isDroppable = false;
+	    // // egg._itemTierDef.canScrap = false;
+	    // // egg._itemTierDef.canRestack = false;
+	    // // egg._itemTierDef.canRebirth = false;
+	    // // egg._itemTierDef.pickupRules = ItemTierDef.PickupRules.ConfirmAll;
+      // // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
+      // // egg.deprecatedTier = ItemTier.Tier2;
 
-      // You can create your own icons and prefabs through assetbundles, but to keep this boilerplate brief, we'll be using question marks.
-      egg.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
-      egg.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
+      // // You can create your own icons and prefabs through assetbundles, but to keep this boilerplate brief, we'll be using question marks.
+      // egg.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
+      // egg.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
+      // egg.canRemove = false;
+      // egg.hidden = true;
 
-      // Can remove determines
-      // if a shrine of order,
-      // or a printer can take this item,
-      // generally true, except for NoTier items.
-      egg.canRemove = false;
+      // var displayRules = new ItemDisplayRuleDict(null);
 
-      // Hidden means that there will be no pickup notification,
-      // and it won't appear in the inventory at the top of the screen.
-      // This is useful for certain noTier helper items, such as the DrizzlePlayerHelper.
-      egg.hidden = true;
-
-      // You can add your own display rules here,
-      // where the first argument passed are the default display rules:
-      // the ones used when no specific display rules for a character are found.
-      // For this example, we are omitting them,
-      // as they are quite a pain to set up without tools like https://thunderstore.io/package/KingEnderBrine/ItemDisplayPlacementHelper/
-      var displayRules = new ItemDisplayRuleDict(null);
-
-      // Then finally add it to R2API
-      ItemAPI.Add(new CustomItem(egg, displayRules));
+      // // Then finally add it to R2API
+      // ItemAPI.Add(new CustomItem(egg, displayRules));
 
       // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
       On.RoR2.ScrapperController.PopRewardPickupQueue += RoR2_ScrapperController_PopRewardPickupQueue;
@@ -130,6 +102,8 @@ namespace EggSharePlugin
       On.RoR2.ShopTerminalBehavior.DropPickup_bool += RoR2_ShopTerminalBehavior_DropPickup;
       On.EntityStates.DroneScrapper.DroneScrappingToIdle.DropPickup += EntityStates_DroneScrapper_DroneScrappingToIdle_DropPickup;
       On.EntityStates.MealPrep.CookingToIdle.DropItem += EntityStates_MealPrep_CookingToIdle_DropItem;
+      On.RoR2.EquipmentSlot.FireRecycle += RoR2_EquipmentSlot_FireRecycle;
+
       new Hook(
         typeof(GenericPickupController).GetMethod(nameof(GenericPickupController.AttemptGrant), (BindingFlags)(-1))
       , RoR2_GenericPickupController_AttemptGrant
@@ -156,6 +130,58 @@ namespace EggSharePlugin
       return drop;
     }
     
+    
+    private ItemDef CreateItemDef()
+    {
+      ItemDef itemDef = ScriptableObject.CreateInstance<ItemDef>();
+
+      // Tokens
+      
+      itemDef.name              = "EggShare";
+      itemDef.nameToken         = "EggShare";
+      itemDef.pickupToken       = "ITEM_EGGSHARE_PICKUP";
+      itemDef.descriptionToken  = "ITEM_EGGSHARE_DESC";
+      itemDef.loreToken         = "ITEM_EGGSHARE_LORE";
+
+      // Grab item model from assetbundle (replace with mystery if it doesn't exist. No-tier items not having a prefab is normal)
+      GameObject prefab =  Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
+      Sprite sprite = itemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
+
+      // Grab item sprite from assetbundle (replace with mystery if it doesn't exist)
+      itemDef.pickupIconSprite = sprite;
+      itemDef.pickupModelPrefab = prefab;
+
+      // Item Tier (If item is a DLC tier, make it a DLC requirement)
+      itemDef.deprecatedTier = ItemTier.VoidBoss;
+
+      // If this item can be removed by any means in-game (typically for no-tier items)
+      itemDef.canRemove = false;
+
+      // If this item cannot be claimed by normal means
+      itemDef.hidden = true;
+
+      // Tags to describe the item
+      itemDef.tags = [
+        ItemTag.CommandArtifactBlacklist
+      , ItemTag.AIBlacklist
+      , ItemTag.CannotDuplicate
+      , ItemTag.CannotSteal
+      , ItemTag.CannotCopy
+      , ItemTag.IgnoreForDropList
+      , ItemTag.SacrificeBlacklist
+      ];
+
+      // Display where the item will be kept around the survivor
+      var displayRules = new ItemDisplayRuleDict(null);
+
+      // Add it to R2API
+      ItemAPI.Add(new CustomItem(itemDef, displayRules));
+
+      // Return the ItemDef
+      return itemDef;
+    }
+
+
     // cauldrons printers handling
     private void RoR2_ShopTerminalBehavior_DropPickup(
       On.RoR2.ShopTerminalBehavior.orig_DropPickup_bool orig
@@ -273,10 +299,31 @@ namespace EggSharePlugin
       inspectInfo.upgradeCount = self.pickup.upgradeValue;
       return inspectInfo;
     }
-
-
     
-    public static bool isCommandEnabled => RunArtifactManager.instance.IsArtifactEnabled(RoR2Content.Artifacts.Command);
+    private static bool isCommandEnabled => RunArtifactManager.instance.IsArtifactEnabled(RoR2Content.Artifacts.Command);
+
+    private bool RoR2_EquipmentSlot_FireRecycle(
+      On.RoR2.EquipmentSlot.orig_FireRecycle orig,
+      EquipmentSlot self
+    )
+    {
+      GenericPickupController pickupController = self.currentTarget.pickupController;
+      UniquePickup oldEgg = pickupController.pickup;
+      
+      if(oldEgg.pickupIndex != PickupCatalog.FindPickupIndex(egg.itemIndex))
+      {
+        return orig(self);
+      }
+
+      UniquePickup yolk = oldEgg with {pickupIndex = PickupCatalog.FindPickupIndex((ItemIndex)oldEgg.GetYolk())};
+
+      pickupController.pickup = yolk;
+      bool result = orig(self);
+      UniquePickup newYolk = pickupController.pickup;
+      UniquePickup newEgg = newYolk with {pickupIndex = PickupCatalog.FindPickupIndex(egg.itemIndex)};
+      pickupController.pickup = newEgg.MakeEgg((int)newYolk.pickupIndex.itemIndex);
+      return result;
+    }
 
     // The Update() method is run on every frame of the game.
     private void Update()
