@@ -15,6 +15,7 @@
 *.zip
 old/
 Thunderstore/
+Thunderstore copy/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
