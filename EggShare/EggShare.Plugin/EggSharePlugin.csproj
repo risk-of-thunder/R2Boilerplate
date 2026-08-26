@@ -20,11 +20,14 @@
 		<PackageReference Include="RiskOfRain2.GameLibs" Version="1.4.1-r.0" />
 		<PackageReference Include="UnityEngine.Modules" Version="2021.3.33" IncludeAssets="compile" />
 		<PackageReference Include="UnityEngine.CoreModule" Version="2020.3.0" IncludeAssets="compile" />
-
+		
 		<PackageReference Include="R2API.Items" Version="1.0.*" />
 		<PackageReference Include="R2API.Language" Version="1.0.*" />
     <Reference Include="RoR2">
       <HintPath>$(RoR2InstallPath)\Risk of Rain 2_Data\Managed\RoR2.dll</HintPath>
+    </Reference>
+    <Reference Include="HarmonyLib">
+      <HintPath>../../Thunderstore/core/0Harmony.dll</HintPath>
     </Reference>
   </ItemGroup>
 

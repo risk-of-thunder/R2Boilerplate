@@ -13,8 +13,8 @@
 *.userprefs
 *.dll
 *.zip
-old
-output
+old/
+Thunderstore/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
